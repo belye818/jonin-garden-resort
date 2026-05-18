@@ -26,7 +26,7 @@
 
 /* Decorative bubbles */
 .rates-hero::before {
-  content: '🌊';
+ content: '🌊';
   position: absolute;
   font-size: 8rem;
   opacity: 0.07;
