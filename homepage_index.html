@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jo-Nin Garden Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="homepage_styles.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Jo-Nin</div>
+  <ul class="nav-links">
+    <li><a href="homepage_index.html" class="active">Home</a></li>
+    <li><a href="pools_index.html">Pools</a></li>
+    <li><a href="amenities_index.html">Amenities</a></li>
+    <li><a href="rates_index.html">Rates</a></li>
+    <li><a href="contact_index.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Book Now</button>
+</nav>
+
+<!-- AUTH MODAL -->
+<div id="auth-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+
+    <!-- LOGIN -->
+    <div id="card-login" class="card visible">
+      <div class="auth-logo">&#9728;</div>
+      <p class="auth-title">Welcome back!</p>
+      <p class="auth-sub">Sign in to book your stay at Jo-Nin</p>
+      <div class="tab-row">
+        <button class="tab active">Login</button>
+        <button class="tab" onclick="switchCard('register')">Register</button>
+      </div>
+      <div class="auth-field">
+        <label>Username</label>
+        <input type="text" placeholder="Enter your username">
+      </div>
+      <div class="auth-field">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password">
+      </div>
+      <button class="auth-btn" onclick="switchCard('otp')">Login</button>
+      <div class="divider">or</div>
+      <button class="admin-btn" onclick="switchCard('admin')">
+        <span class="admin-icon">A</span> Admin / Staff Portal <span class="staff-badge">STAFF</span>
+      </button>
+      <p class="auth-switch">No account? <span onclick="switchCard('register')">Register here</span></p>
+    </div>
+
+    <!-- REGISTER -->
+    <div id="card-register" class="card">
+      <div class="auth-logo">&#127774;</div>
+      <p class="auth-title">Join us!</p>
+      <p class="auth-sub">Create your guest account</p>
+      <div class="tab-row">
+        <button class="tab" onclick="switchCard('login')">Login</button>
+        <button class="tab active">Register</button>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field"><label>First name</label><input type="text" placeholder="First"></div>
+        <div class="auth-field"><label>Last name</label><input type="text" placeholder="Last"></div>
+      </div>
+      <div class="auth-field"><label>Email</label><input type="email" placeholder="yourname@gmail.com"></div>
+      <div class="auth-field"><label>Username</label><input type="text" placeholder="Choose a username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
+      <button class="auth-btn" onclick="switchCard('otp')">Create account</button>
+      <p class="auth-switch">Already registered? <span onclick="switchCard('login')">Login here</span></p>
+    </div>
+
+    <!-- OTP -->
+    <div id="card-otp" class="card">
+      <div class="auth-logo">&#128274;</div>
+      <p class="auth-title">Verify OTP</p>
+      <p class="auth-sub">We sent a 6-digit code to your email</p>
+      <div class="otp-boxes">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+      </div>
+      <button class="auth-btn">Verify &amp; Continue</button>
+      <p class="auth-sub" style="margin-top:0.8rem;margin-bottom:0;">Didn't receive it? <span class="resend-link">Resend code</span></p>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to login</p>
+    </div>
+
+    <!-- ADMIN PORTAL -->
+    <div id="card-admin" class="card">
+      <div class="auth-logo">&#128187;</div>
+      <p class="auth-title">Staff Portal</p>
+      <p class="auth-sub">Authorized personnel only</p>
+      <div class="admin-banner">
+        <span>Admin / Staff Access</span>
+      </div>
+      <div class="auth-field"><label>Staff ID</label><input type="text" placeholder="Enter your staff ID"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Enter admin password"></div>
+      <button class="auth-btn auth-btn-red" onclick="window.location.href='admindashboard_index.html'">Access Portal</button>
+      <div class="admin-warning">
+        &#9888; Full database access — authorized staff only
+      </div>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to guest login</p>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <h1><span style="font-family:'Nunito',sans-serif;font-weight:800;text-transform:uppercase;letter-spacing:0.25em;font-size:0.32em;text-shadow:none;color:#ffffff;display:block;margin-bottom:0.5em;">Welcome to</span><span>Jo-Nin</span> Garden Resort</h1>
+  <p class="hero-sub">Your tropical escape — splash, relax, and make memories.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="checkLoginAndBook()">Book a Day Pass</button>
+    <a href="#" class="btn-secondary">Explore the Resort</a>
+  </div>
+  <svg class="hero-waves" viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+    <path d="M0,60 C360,120 1080,0 1440,60 L1440,120 L0,120 Z" fill="#F5F0E0"/>
+  </svg>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="section-tag">Why visit us?</div>
+  <h2 class="section-title">Fun for the whole family</h2>
+  <p class="section-desc">Nestled in lush greenery with sparkling pools, garden views, and warm Filipino hospitality — every visit feels like home.</p>
+  <div class="features-grid">
+    <div class="feature-card">
+      <span class="feature-icon">🏊</span>
+      <h3>Swimming Pools</h3>
+      <p>Multiple pools for all ages — from kiddie splashpads to adult lanes.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🌿</span>
+      <h3>Garden Setting</h3>
+      <p>Surrounded by tropical plants and flowers for a peaceful, natural escape.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🍽️</span>
+      <h3>Dining & Picnic</h3>
+      <p>Covered function areas and food stalls so you can eat, rest, and enjoy.</p>
+    </div>
+    <div class="feature-card">
+      <span class="feature-icon">🎉</span>
+      <h3>Events & Parties</h3>
+      <p>Perfect for birthdays, reunions, and company outings with group packages.</p>
+    </div>
+  </div>
+</section>
+
+<!-- POOL SECTION -->
+<section class="pool-section">
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;margin-bottom:-2px;transform:rotate(180deg)">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#F5F0E0"/>
+  </svg>
+  <div class="section-tag">Our Rates</div>
+  <h2 class="section-title">Choose your splash</h2>
+  <p class="section-desc">Affordable day passes and overnight packages for individuals, families, and groups.</p>
+  <div class="pool-cards">
+    <div class="pool-card">
+      <div class="pool-card-label">Passes</div>
+      <h3>Day Pass or Night Pass</h3>
+      <p>Enjoy flexible access to our pools and amenities, perfect for a quick escape or a relaxing evening with friends and family.</p>
+      <div class="price">₱80–₱150 <span>/ person</span></div>
+    </div>
+    <div class="pool-card">
+      <div class="pool-card-label">Best Value</div>
+      <h3>Cottages</h3>
+      <p>Ideal for groups, our cottages provide a comfortable space to unwind, gather, and enjoy your stay with added convenience.</p>
+      <div class="price">₱400–₱1,000 <span>/ depending on group size</span></div>
+    </div>
+    <div class="pool-card">
+      <div class="pool-card-label">Event Package</div>
+      <h3>Event Package</h3>
+      <p>Celebrate life's special moments with us — from birthdays to company events, we offer a complete and hassle-free venue experience.</p>
+      <div class="price">₱600–₱3,500 <span>/ per event</span></div>
+    </div>
+  </div>
+  <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;margin-top:-2px">
+    <path d="M0,40 C360,80 1080,0 1440,40 L1440,80 L0,80 Z" fill="#BE2130"/>
+  </svg>
+</section>
+
+<!-- AMENITIES -->
+<section id="amenities" class="amenities">
+  <div class="section-tag">What we offer</div>
+  <h2 class="section-title">Resort Amenities</h2>
+  <p class="section-desc">Comfort, convenience, and fun are part of every visit. Explore the facilities that make Jo-Nin perfect for day trips, family gatherings, and celebrations.</p>
+  <div class="amenities-grid">
+    <div class="amenity-card">
+      <span class="amenity-icon">🏡</span>
+      <h3>Poolside Cottages</h3>
+      <p>Relax in shaded cottages with tables and seating, ideal for groups and families.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-icon">🎉</span>
+      <h3>Function Halls</h3>
+      <p>Host birthdays, reunions, and events in our spacious event spaces with full support.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-icon">🍴</span>
+      <h3>Food & Refreshments</h3>
+      <p>Enjoy local favorites and snacks from our resort stalls and food kiosks.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-icon">🌿</span>
+      <h3>Garden Picnic Area</h3>
+      <p>Gather under trees and enjoy a scenic picnic setting by the garden paths.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-icon">🚿</span>
+      <h3>Locker Rooms</h3>
+      <p>Convenient changing rooms and fresh water showers keep your stay comfortable.</p>
+    </div>
+    <div class="amenity-card">
+      <span class="amenity-icon">📶</span>
+      <h3>Wi-Fi & Events</h3>
+      <p>Stay connected with resort Wi-Fi and enjoy music, lights, and event-ready support.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-tag">Get in touch</div>
+  <h2 class="section-title">Contact Jo-Nin Garden Resort</h2>
+  <p class="section-desc">Ready to plan your visit? Reach out and we’ll help you reserve the best package for your group.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-card">
+        <span class="contact-icon">📍</span>
+        <h3>Visit Us</h3>
+        <p>Brgy. Cruz, Silang, Cavite, Philippines</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">📞</span>
+        <h3>Call Us</h3>
+        <p>+63 912 345 6789</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <h3>Email</h3>
+        <p>info@joningardenresort.ph</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">⏰</span>
+        <h3>Hours</h3>
+        <p>Mon–Sun: 7:00 AM – 10:00 PM</p>
+      </div>
+    </div>
+    <form id="contact-form" class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name" required></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+63 912 345 6789"></div>
+      <div class="form-group"><label>Message</label><textarea rows="5" placeholder="How can we help you?" required></textarea></div>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jo-Nin Garden Resort</div>
+  <p class="footer-tagline">Your sunny escape in the heart of nature.</p>
+  <ul class="footer-links">
+    <li><a href="https://www.facebook.com/profile.php?id=100063576504631" target="_blank">Facebook</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Jo-Nin Garden Resort. All rights reserved.</p>
+</footer>
+
+<script src="homepage_script.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

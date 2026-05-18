@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rates — Jo-Nin Garden Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="homepage_styles.css">
+<link rel="stylesheet" href="rates_style.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Jo-Nin</div>
+  <ul class="nav-links">
+    <li><a href="homepage_index.html">Home</a></li>
+    <li><a href="pools_index.html">Pools</a></li>
+    <li><a href="amenities_index.html">Amenities</a></li>
+    <li><a href="rates_index.html" class="nav-active">Rates</a></li>
+    <li><a href="contact_index.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Book Now</button>
+</nav>
+
+<!-- AUTH MODAL (copied from homepage) -->
+<div id="auth-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="card-login" class="card visible">
+      <div class="auth-logo">&#9728;</div>
+      <p class="auth-title">Welcome back!</p>
+      <p class="auth-sub">Sign in to book your stay at Jo-Nin</p>
+      <div class="tab-row">
+        <button class="tab active">Login</button>
+        <button class="tab" onclick="switchCard('register')">Register</button>
+      </div>
+      <div class="auth-field"><label>Username</label><input type="text" placeholder="Enter your username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Enter your password"></div>
+      <button class="auth-btn" onclick="switchCard('otp')">Login</button>
+      <div class="divider">or</div>
+      <button class="admin-btn" onclick="switchCard('admin')">
+        <span class="admin-icon">A</span> Admin / Staff Portal <span class="staff-badge">STAFF</span>
+      </button>
+      <p class="auth-switch">No account? <span onclick="switchCard('register')">Register here</span></p>
+    </div>
+    <div id="card-register" class="card">
+      <div class="auth-logo">&#127774;</div>
+      <p class="auth-title">Join us!</p>
+      <p class="auth-sub">Create your guest account</p>
+      <div class="tab-row">
+        <button class="tab" onclick="switchCard('login')">Login</button>
+        <button class="tab active">Register</button>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field"><label>First name</label><input type="text" placeholder="First"></div>
+        <div class="auth-field"><label>Last name</label><input type="text" placeholder="Last"></div>
+      </div>
+      <div class="auth-field"><label>Email</label><input type="email" placeholder="yourname@gmail.com"></div>
+      <div class="auth-field"><label>Username</label><input type="text" placeholder="Choose a username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
+      <button class="auth-btn" onclick="switchCard('otp')">Create account</button>
+      <p class="auth-switch">Already registered? <span onclick="switchCard('login')">Login here</span></p>
+    </div>
+    <div id="card-otp" class="card">
+      <div class="auth-logo">&#128274;</div>
+      <p class="auth-title">Verify OTP</p>
+      <p class="auth-sub">We sent a 6-digit code to your email</p>
+      <div class="otp-boxes">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+      </div>
+      <button class="auth-btn">Verify &amp; Continue</button>
+      <p class="auth-sub" style="margin-top:0.8rem;margin-bottom:0;">Didn't receive it? <span class="resend-link">Resend code</span></p>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to login</p>
+    </div>
+    <div id="card-admin" class="card">
+      <div class="auth-logo">&#128187;</div>
+      <p class="auth-title">Staff Portal</p>
+      <p class="auth-sub">Authorized personnel only</p>
+      <div class="admin-banner"><span>Admin / Staff Access</span></div>
+      <div class="auth-field"><label>Staff ID</label><input type="text" placeholder="Enter your staff ID"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Enter admin password"></div>
+      <button class="auth-btn auth-btn-red" onclick="window.location.href='admindashboard_index.html'">Access Portal</button>
+      <div class="admin-warning">&#9888; Full database access — authorized staff only</div>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to guest login</p>
+    </div>
+  </div>
+</div>
+
+<!-- RATES HERO -->
+<section class="rates-hero">
+  <div class="rates-hero-inner">
+    <div class="section-tag rates-hero-tag">Our Rates</div>
+    <h1 class="rates-hero-title">Choose your<br><span>perfect splash</span></h1>
+    <p class="rates-hero-sub">Affordable passes, cozy cottages, and full event packages — all wrapped in tropical charm.</p>
+  </div>
+ <svg class="rates-hero-wave" viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+  <path d="M0,50 C360,100 1080,0 1440,50 L1440,100 L0,100 Z" fill="#F5F0E0"/>
+</svg>
+</section>
+
+<!-- TAB FILTER -->
+<section class="rates-section">
+  <div class="rates-tabs" id="ratesTabs">
+    <button class="rates-tab active" data-cat="all">All</button>
+    <button class="rates-tab" data-cat="pass">Day &amp; Night Passes</button>
+    <button class="rates-tab" data-cat="cottage">Cottages</button>
+    <button class="rates-tab" data-cat="event">Event Packages</button>
+  </div>
+
+  <!-- PASSES -->
+  <div class="rates-category" data-cat="pass">
+    <div class="rates-cat-header">
+      <span class="cat-icon">🎫</span>
+      <div>
+        <div class="cat-label">Entry Passes</div>
+        <h2 class="cat-title">Day &amp; Night Passes</h2>
+      </div>
+    </div>
+    <div class="rates-grid">
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--sky)"></div>
+        <div class="rate-tag">Weekday</div>
+        <div class="rate-icon">☀️</div>
+        <h3>Day Pass</h3>
+        <p>Full day access to all pools and common areas. Enjoy the resort from open until sundown.</p>
+        <ul class="rate-includes">
+          <li>✅ Pool access (all ages)</li>
+          <li>✅ Changing rooms</li>
+          <li>✅ Garden grounds</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱80</span>
+          <span class="price-per">/ person</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card rate-card-featured">
+        <div class="rate-card-accent" style="background:var(--yellow)"></div>
+        <div class="rate-badge">Most Popular</div>
+        <div class="rate-tag" style="background:var(--yellow);color:var(--bark);">Weekend</div>
+        <div class="rate-icon">🌤️</div>
+        <h3>Weekend Day Pass</h3>
+        <p>Beat the heat on Saturdays and Sundays! Peak weekend rate includes all-day pool and amenity access.</p>
+        <ul class="rate-includes">
+          <li>✅ Pool access (all ages)</li>
+          <li>✅ Changing rooms</li>
+          <li>✅ Garden grounds</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱120</span>
+          <span class="price-per">/ person</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--blue)"></div>
+        <div class="rate-tag">Evening</div>
+        <div class="rate-icon">🌙</div>
+        <h3>Night Pass</h3>
+        <p>Enjoy the resort under the stars. Cool evening air, lit pools, and a relaxed vibe for night owls.</p>
+        <ul class="rate-includes">
+          <li>✅ Pool access (all ages)</li>
+          <li>✅ Night lighting</li>
+          <li>✅ Garden grounds</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱150</span>
+          <span class="price-per">/ person</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- COTTAGES -->
+  <div class="rates-category" data-cat="cottage">
+    <div class="rates-cat-header">
+      <span class="cat-icon">🏡</span>
+      <div>
+        <div class="cat-label">Private Spaces</div>
+        <h2 class="cat-title">Cottages</h2>
+      </div>
+    </div>
+    <div class="rates-grid">
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--green)"></div>
+        <div class="rate-tag" style="background:#E8F5E9;color:var(--green);">Small</div>
+        <div class="rate-icon">🌿</div>
+        <h3>Small Cottage</h3>
+        <p>Perfect for pairs and small families. A shaded nook with a table, chairs, and pool access included.</p>
+        <ul class="rate-includes">
+          <li>✅ Up to 5 persons</li>
+          <li>✅ Table &amp; seating</li>
+          <li>✅ Pool access included</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱400</span>
+          <span class="price-per">/ cottage</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card rate-card-featured">
+        <div class="rate-card-accent" style="background:var(--yellow)"></div>
+        <div class="rate-badge">Best Value</div>
+        <div class="rate-tag" style="background:var(--yellow);color:var(--bark);">Medium</div>
+        <div class="rate-icon">🍃</div>
+        <h3>Medium Cottage</h3>
+        <p>Great for barkadas and medium-sized families. Spacious setup with ample seating and a great view.</p>
+        <ul class="rate-includes">
+          <li>✅ Up to 10 persons</li>
+          <li>✅ Table &amp; seating</li>
+          <li>✅ Pool access included</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱700</span>
+          <span class="price-per">/ cottage</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--orange)"></div>
+        <div class="rate-tag" style="background:#FFF0E8;color:var(--orange);">Large</div>
+        <div class="rate-icon">🌳</div>
+        <h3>Large Cottage</h3>
+        <p>Ideal for big groups and reunions. Spacious covered area that fits the whole barkada comfortably.</p>
+        <ul class="rate-includes">
+          <li>✅ Up to 20 persons</li>
+          <li>✅ Tables &amp; seating</li>
+          <li>✅ Pool access included</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱1,000</span>
+          <span class="price-per">/ cottage</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EVENTS -->
+  <div class="rates-category" data-cat="event">
+    <div class="rates-cat-header">
+      <span class="cat-icon">🎉</span>
+      <div>
+        <div class="cat-label">Celebrations</div>
+        <h2 class="cat-title">Event Packages</h2>
+      </div>
+    </div>
+    <div class="rates-grid">
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--sky)"></div>
+        <div class="rate-tag" style="background:#E0F4FF;color:var(--blue);">Basic</div>
+        <div class="rate-icon">🎈</div>
+        <h3>Birthday Package</h3>
+        <p>A fun, fuss-free birthday setup perfect for kids and teens — includes basic decorations and pool slots.</p>
+        <ul class="rate-includes">
+          <li>✅ Up to 30 guests</li>
+          <li>✅ Basic decorations</li>
+          <li>✅ Venue use (4 hrs)</li>
+          <li>✅ Pool access</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱600</span>
+          <span class="price-per">/ event</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card rate-card-featured">
+        <div class="rate-card-accent" style="background:var(--yellow)"></div>
+        <div class="rate-badge">Popular</div>
+        <div class="rate-tag" style="background:var(--yellow);color:var(--bark);">Full Day</div>
+        <div class="rate-icon">🎊</div>
+        <h3>Full Event Package</h3>
+        <p>Everything you need for a complete celebration — great for reunions, debuts, and milestone events.</p>
+        <ul class="rate-includes">
+          <li>✅ Up to 80 guests</li>
+          <li>✅ Full venue (8 hrs)</li>
+          <li>✅ Decorations</li>
+          <li>✅ Pool access</li>
+          <li>✅ Function area</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱2,000</span>
+          <span class="price-per">/ event</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+      <div class="rate-card">
+        <div class="rate-card-accent" style="background:var(--red)"></div>
+        <div class="rate-tag" style="background:#FFE8E8;color:var(--red);">Corporate</div>
+        <div class="rate-icon">🏢</div>
+        <h3>Company Outing</h3>
+        <p>The ultimate team-building venue. Exclusive resort access for your whole company with full amenities.</p>
+        <ul class="rate-includes">
+          <li>✅ 100+ guests</li>
+          <li>✅ Exclusive pool access</li>
+          <li>✅ Event coordination</li>
+          <li>✅ Function areas</li>
+          <li>✅ Full-day venue</li>
+        </ul>
+        <div class="rate-price">
+          <span class="price-label">Starting at</span>
+          <span class="price-amount">₱3,500</span>
+          <span class="price-per">/ event</span>
+        </div>
+        <button class="rate-btn" onclick="openModal()">Book This</button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- NOTES BANNER -->
+<section class="rates-notes">
+  <div class="notes-inner">
+    <div class="notes-icon">📋</div>
+    <div>
+      <h3>Before you book, take note!</h3>
+      <ul class="notes-list">
+        <li>Rates may change on holidays and peak seasons.</li>
+        <li>Children below 3 ft. enter for <strong>FREE</strong>.</li>
+        <li>Outside food is allowed in cottage areas.</li>
+        <li>Reservations are encouraged — especially on weekends!</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING BANNER -->
+<section class="booking">
+  <h2>Ready to make a splash?</h2>
+  <p>Reserve your slot today — weekends fill up fast!</p>
+  <div class="booking-form">
+    <input type="text" placeholder="Your name">
+    <input type="date">
+    <input type="number" placeholder="No. of guests" min="1">
+    <button>Reserve Now</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jo-Nin Garden Resort</div>
+  <p class="footer-tagline">Your sunny escape in the heart of nature.</p>
+  <ul class="footer-links">
+    <li><a href="https://www.facebook.com/profile.php?id=100063576504631" target="_blank">Facebook</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Jo-Nin Garden Resort. All rights reserved.</p>
+</footer>
+
+<script src="homepage_script.js"></script>
+<script src="rates_script.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

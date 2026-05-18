@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Reports — Jo-Nin Garden Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="homepage_styles.css">
+<link rel="stylesheet" href="admin_style.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Jo-Nin</div>
+  <ul class="nav-links">
+    <li><a href="homepage_index.html">Home</a></li>
+    <li><a href="pools_index.html">Pools</a></li>
+    <li><a href="amenities_index.html">Amenities</a></li>
+    <li><a href="rates_index.html">Rates</a></li>
+    <li><a href="contact_index.html">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="logout()">Logout</button>
+</nav>
+
+<section class="admin-hero">
+  <div class="admin-hero-inner">
+    <div class="hero-copy">
+      <span class="section-tag">Admin Reports</span>
+      <h1>Resort Performance</h1>
+      <p>Track bookings, revenue, occupancy, and event activity in one place.</p>
+      <div class="hero-actions">
+        <button class="btn-primary" onclick="window.location.href='admindashboard_index.html'">Back to Dashboard</button>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-card">
+        <span class="stat-label">Monthly Revenue</span>
+        <h2>₱185,400</h2>
+        <p>Net revenue for the last 30 days.</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Total Bookings</span>
+        <h2>186</h2>
+        <p>Confirmed reservations across all packages.</p>
+      </div>
+      <div class="stat-card">
+        <span class="stat-label">Average Occupancy</span>
+        <h2>78%</h2>
+        <p>Estimated guest capacity used this month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="admin-dashboard">
+  <div class="dashboard-grid">
+    <section class="dashboard-panel">
+      <div class="panel-header">
+        <h2>Revenue by Package</h2>
+        <span class="panel-sub">Last 30 days breakdown</span>
+      </div>
+      <div class="report-summary">
+        <div class="report-card report-card-blue">
+          <h3>Day Passes</h3>
+          <p>₱62,900</p>
+        </div>
+        <div class="report-card report-card-green">
+          <h3>Cottage Rentals</h3>
+          <p>₱78,300</p>
+        </div>
+        <div class="report-card report-card-yellow">
+          <h3>Event Packages</h3>
+          <p>₱44,200</p>
+        </div>
+      </div>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+              <th>Change</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Week-over-week growth</td>
+              <td>+12%</td>
+              <td><span class="status status-confirmed">Up</span></td>
+            </tr>
+            <tr>
+              <td>Average nightly spend</td>
+              <td>₱1,240</td>
+              <td><span class="status status-booked">Stable</span></td>
+            </tr>
+            <tr>
+              <td>Events scheduled</td>
+              <td>8</td>
+              <td><span class="status status-pending">New</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <aside class="dashboard-sidebar">
+      <div class="sidebar-card sidebar-card-alt">
+        <h3>Top Performing Dates</h3>
+        <ul class="report-list">
+          <li>May 3 – Sold out</li>
+          <li>May 9 – High traffic</li>
+          <li>May 14 – Event day</li>
+        </ul>
+      </div>
+      <div class="sidebar-card">
+        <h3>Guest Feedback Highlights</h3>
+        <p>"Excellent service." "The cottages were very clean." "Great for family bonding."</p>
+      </div>
+      <div class="sidebar-card">
+        <h3>Operational Alerts</h3>
+        <ul class="report-list">
+          <li>Restock poolside refreshments</li>
+          <li>Confirm weekend sound setup</li>
+          <li>Verify staff schedule for Saturday</li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-logo">Jo-Nin Garden Resort</div>
+  <p class="footer-tagline">Admin reporting for resort operations.</p>
+  <p class="footer-copy">© 2026 Jo-Nin Garden Resort</p>
+</footer>
+
+<script src="homepage_script.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Jo-Nin Garden Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="contact.css">
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Jo-Nin</div>
+  <ul class="nav-links">
+    <li><a href="homepage_index.html">Home</a></li>
+    <li><a href="pools_index.html">Pools</a></li>
+    <li><a href="amenities_index.html">Amenities</a></li>
+    <li><a href="rates_index.html">Rates</a></li>
+    <li><a href="contact_index.html" class="active">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="openModal()">Book Now</button>
+</nav>
+
+<div id="auth-modal" class="modal-overlay">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="card-login" class="card visible">
+      <div class="auth-logo">&#9728;</div>
+      <p class="auth-title">Welcome back!</p>
+      <p class="auth-sub">Sign in to book your stay at Jo-Nin</p>
+      <div class="tab-row">
+        <button class="tab active">Login</button>
+        <button class="tab" onclick="switchCard('register')">Register</button>
+      </div>
+      <div class="auth-field"><label>Username</label><input type="text" placeholder="Enter your username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Enter your password"></div>
+      <button class="auth-btn" onclick="switchCard('otp')">Login</button>
+      <div class="divider">or</div>
+      <button class="admin-btn" onclick="switchCard('admin')">
+        <span class="admin-icon">A</span> Admin / Staff Portal <span class="staff-badge">STAFF</span>
+      </button>
+      <p class="auth-switch">No account? <span onclick="switchCard('register')">Register here</span></p>
+    </div>
+    <div id="card-register" class="card">
+      <div class="auth-logo">&#127774;</div>
+      <p class="auth-title">Join us!</p>
+      <p class="auth-sub">Create your guest account</p>
+      <div class="tab-row">
+        <button class="tab" onclick="switchCard('login')">Login</button>
+        <button class="tab active">Register</button>
+      </div>
+      <div class="auth-row">
+        <div class="auth-field"><label>First name</label><input type="text" placeholder="First"></div>
+        <div class="auth-field"><label>Last name</label><input type="text" placeholder="Last"></div>
+      </div>
+      <div class="auth-field"><label>Email</label><input type="email" placeholder="yourname@gmail.com"></div>
+      <div class="auth-field"><label>Username</label><input type="text" placeholder="Choose a username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Create a password"></div>
+      <button class="auth-btn" onclick="switchCard('otp')">Create account</button>
+      <p class="auth-switch">Already registered? <span onclick="switchCard('login')">Login here</span></p>
+    </div>
+    <div id="card-otp" class="card">
+      <div class="auth-logo">&#128274;</div>
+      <p class="auth-title">Verify OTP</p>
+      <p class="auth-sub">We sent a 6-digit code to your email</p>
+      <div class="otp-boxes">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+        <input class="otp-box" maxlength="1" type="text">
+      </div>
+      <button class="auth-btn">Verify &amp; Continue</button>
+      <p class="auth-sub" style="margin-top:0.8rem;margin-bottom:0;">Didn't receive it? <span class="resend-link">Resend code</span></p>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to login</p>
+    </div>
+    <div id="card-admin" class="card">
+      <div class="auth-logo">&#128187;</div>
+      <p class="auth-title">Staff Portal</p>
+      <p class="auth-sub">Authorized personnel only</p>
+      <div class="admin-banner"><span>Admin / Staff Access</span></div>
+      <div class="auth-field"><label>Staff ID</label><input type="text" placeholder="Enter your staff ID"></div>
+      <div class="auth-field"><label>Password</label><input type="password" placeholder="Enter admin password"></div>
+      <button class="auth-btn auth-btn-red" onclick="window.location.href='admindashboard_index.html'">Access Portal</button>
+      <div class="admin-warning">&#9888; Full database access — authorized staff only</div>
+      <p class="back-link" onclick="switchCard('login')">&#8592; Back to guest login</p>
+    </div>
+  </div>
+</div>
+
+<section class="hero">
+  <h1>Contact <span>Jo-Nin Garden Resort</span></h1>
+  <p class="hero-sub">Questions, special requests, or reservation help — our team is ready to assist.</p>
+  <div class="hero-btns">
+    <button class="btn-primary" onclick="openModal()">Book Now</button>
+    <a href="amenities_index.html" class="btn-secondary">Explore Amenities</a>
+  </div>
+</section>
+
+<section class="contact-section">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title">Reach out to us</h2>
+  <p class="section-desc">We’re happy to help with your booking, group requests, or on-site questions. Send us a note and we’ll reply quickly.</p>
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-card">
+        <span class="contact-icon">📍</span>
+        <h3>Our Address</h3>
+        <p>Brgy. Cruz, Silang, Cavite, Philippines</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">📞</span>
+        <h3>Phone</h3>
+        <p>+63 912 345 6789</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">✉️</span>
+        <h3>Email</h3>
+        <p>info@joningardenresort.ph</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-icon">⏰</span>
+        <h3>Hours</h3>
+        <p>Mon–Sun: 7:00 AM – 10:00 PM</p>
+      </div>
+    </div>
+    <form id="contact-form" class="contact-form">
+      <div class="form-row">
+        <div class="form-group"><label>Name</label><input type="text" placeholder="Your full name" required></div>
+        <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com" required></div>
+      </div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+63 912 345 6789"></div>
+      <div class="form-group"><label>Message</label><textarea rows="5" placeholder="Tell us what you need" required></textarea></div>
+      <button type="submit" class="btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Jo-Nin Garden Resort</div>
+  <p class="footer-tagline">Your sunny escape in the heart of nature.</p>
+  <ul class="footer-links">
+    <li><a href="https://www.facebook.com/profile.php?id=100063576504631" target="_blank">Facebook</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Jo-Nin Garden Resort. All rights reserved.</p>
+</footer>
+
+<script src="homepage_script.js"></script>
+<script src="auth.js"></script>
+</body>
+</html>

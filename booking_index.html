@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Stay — Jo-Nin Garden Resort</title>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="booking_style.css">
+<!-- Flatpickr Calendar CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Jo-Nin</div>
+  <ul class="nav-links">
+    <li><a href="homepage_index.html">Home</a></li>
+    <li><a href="pools_index.html">Pools</a></li>
+    <li><a href="amenities_index.html">Amenities</a></li>
+    <li><a href="rates_index.html">Rates</a></li>
+    <li><a href="contact_index.html">Contact</a></li>
+  </ul>
+  <div class="nav-user">
+    <span class="nav-greeting">Hi, <strong id="guestNameDisplay">Guest</strong> 👋</span>
+    <button class="nav-logout" onclick="logout()">Logout</button>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main class="dashboard">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-bar" placeholder="Search rooms, cottages, events...">
+    </div>
+    <div class="top-date">
+      <input type="text" id="date-picker" class="date-picker" placeholder="Select Date">
+      <input type="number" class="guest-count" id="guest-count" placeholder="Guests" min="1">
+    </div>
+  </div>
+
+  <!-- LAYOUT -->
+  <div class="dashboard-layout">
+
+    <!-- LISTINGS -->
+    <div class="listings-area">
+
+      <!-- PASSES -->
+      <div class="listing-section" id="section-passes">
+        <div class="listing-section-header">
+          <h2>Available Passes</h2>
+          <span class="listing-count">2 options</span>
+        </div>
+        <div class="listing-grid">
+          <div class="listing-card card-pass" data-type="pass" data-name="Day Pass" data-price="150" data-max-guests="100">
+            <div class="card-img">☀️</div>
+            <div class="card-body">
+              <h3>Day Pass</h3>
+              <p>Full daytime access to all pools and amenities. Perfect for a fun-filled day out with family or friends.</p>
+              <ul class="card-tags">
+                <li>7:00 AM – 6:00 PM</li>
+                <li>Pool access included</li>
+                <li>Walk-in or reserved</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱80–₱150<span>/person</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card card-pass" data-type="pass" data-name="Night Pass" data-price="150" data-max-guests="100">
+            <div class="card-img">🌙</div>
+            <div class="card-body">
+              <h3>Night Pass</h3>
+              <p>Enjoy the resort under the stars. Great for evening relaxation and night swims with a cooler atmosphere.</p>
+              <ul class="card-tags">
+                <li>6:00 PM – 12:00 AM</li>
+                <li>Pool access included</li>
+                <li>Walk-in or reserved</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱80–₱150<span>/person</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COTTAGES -->
+      <div class="listing-section" id="section-cottages">
+        <div class="listing-section-header">
+          <h2>Available Cottages</h2>
+          <span class="listing-count">11 available</span>
+        </div>
+        <div class="listing-grid">
+          <div class="listing-card card-cottage" data-type="cottage" data-name="Small Cottage" data-price="400" data-max-guests="15">
+            <div class="card-img">🏡</div>
+            <div class="card-body">
+              <h3>Small Cottage</h3>
+              <p>Perfect for small groups and families looking for a comfortable spot to relax and enjoy the resort.</p>
+              <ul class="card-tags">
+                <li>10 – 15 persons</li>
+                <li>10 cottages available</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱400<span>/day</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card card-cottage" data-type="cottage" data-name="Large Cottage" data-price="1000" data-max-guests="30">
+            <div class="card-img">🏡</div>
+            <div class="card-body">
+              <h3>Large Cottage</h3>
+              <p>Spacious covered pavilion ideal for bigger groups, reunions, and celebrations with plenty of room.</p>
+              <ul class="card-tags">
+                <li>20 – 30 persons</li>
+                <li>1 cottage available</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱1,000<span>/day</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ROOMS -->
+      <div class="listing-section" id="section-rooms">
+        <div class="listing-section-header">
+          <h2>Available Rooms</h2>
+          <span class="listing-count">6 available</span>
+        </div>
+        <div class="listing-grid">
+          <div class="listing-card" data-type="room" data-name="Standard Room" data-price="800" data-max-guests="2">
+            <div class="card-img">🛏️</div>
+            <div class="card-body">
+              <h3>Standard Room</h3>
+              <p>Cozy room for 2 with fan and basic amenities.</p>
+              <div class="card-footer">
+                <span class="card-price">₱800<span>/night</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card" data-type="room" data-name="Deluxe Room" data-price="1200" data-max-guests="2">
+            <div class="card-img">🛏️</div>
+            <div class="card-body">
+              <h3>Deluxe Room</h3>
+              <p>Spacious air-conditioned room with garden view.</p>
+              <div class="card-footer">
+                <span class="card-price">₱1,200<span>/night</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card" data-type="room" data-name="Family Room" data-price="1800" data-max-guests="5">
+            <div class="card-img">🛏️</div>
+            <div class="card-body">
+              <h3>Family Room</h3>
+              <p>Large room for up to 5 guests with extra beds.</p>
+              <div class="card-footer">
+                <span class="card-price">₱1,800<span>/night</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- EVENTS -->
+      <div class="listing-section" id="section-events">
+        <div class="listing-section-header">
+          <h2>Available Events</h2>
+          <span class="listing-count">1 venue</span>
+        </div>
+        <div class="listing-grid">
+          <div class="listing-card card-event" data-type="event" data-name="Events Place" data-price="5000" data-max-guests="100">
+            <div class="card-img">🎉</div>
+            <div class="card-body">
+              <h3>Events Place</h3>
+              <p>Our dedicated venue for birthdays, reunions, company outings, and all special celebrations. Full setup included.</p>
+              <ul class="card-tags">
+                <li>Full venue access</li>
+                <li>Pool area included</li>
+                <li>Reservation required</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱5,000–₱10,000<span>/event</span></span>
+                <button class="book-btn">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADD-ONS -->
+        <div class="addon-header">
+          <h3 class="addon-title">🎤 Add-Ons</h3>
+          <span class="addon-sub">Enhance your event experience</span>
+        </div>
+        <div class="listing-grid">
+          <div class="listing-card card-addon" data-type="addon" data-name="Videoke — Day Pass" data-price="600" data-max-guests="50">
+            <div class="card-img">🎤</div>
+            <div class="card-body">
+              <h3>Videoke — Day Pass</h3>
+              <p>Sing your heart out during the day with our videoke machine rental. Great for events and group gatherings.</p>
+              <ul class="card-tags">
+                <li>8:00 AM – 5:00 PM</li>
+                <li>Full day rental</li>
+                <li>Available add-on only</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱600<span>/rental</span></span>
+                <button class="book-btn">Add On</button>
+              </div>
+            </div>
+          </div>
+          <div class="listing-card card-addon" data-type="addon" data-name="Videoke — Night Pass" data-price="300" data-max-guests="50">
+            <div class="card-img">🎶</div>
+            <div class="card-body">
+              <h3>Videoke — Night Pass</h3>
+              <p>Keep the party going into the evening with our nighttime videoke rental under the stars.</p>
+              <ul class="card-tags">
+                <li>6:00 PM – 10:00 PM</li>
+                <li>Evening rental</li>
+                <li>Available add-on only</li>
+              </ul>
+              <div class="card-footer">
+                <span class="card-price">₱300<span>/rental</span></span>
+                <button class="book-btn">Add On</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- SIDE MENU -->
+    <aside class="side-menu">
+      <div class="menu-title">Menu</div>
+      <ul class="menu-list">
+        <li><a href="#section-passes" class="menu-item active" onclick="setActive(this)">🎫 Available Passes</a></li>
+        <li><a href="#section-cottages" class="menu-item" onclick="setActive(this)">🏡 Available Cottages</a></li>
+        <li><a href="#section-rooms" class="menu-item" onclick="setActive(this)">🛏️ Available Rooms</a></li>
+        <li><a href="#section-events" class="menu-item" onclick="setActive(this)">🎉 Available Events</a></li>
+      </ul>
+      <div class="menu-divider"></div>
+      <div class="menu-title">My Bookings</div>
+      <ul class="menu-list">
+        <li><a href="#" class="menu-item" onclick="showMyBookings()">📋 My Reservations</a></li>
+        <li><a href="#" class="menu-item">⭐ My Reviews</a></li>
+      </ul>
+    </aside>
+
+  </div>
+  
+  <!-- FINAL BOOK NOW -->
+  <div class="final-cta">
+    <div class="final-cta-inner">
+      <h2>Ready to reserve your spot?</h2>
+      <p>Review your selections above and confirm your booking at Jo-Nin Garden Resort!</p>
+      <button class="final-book-btn" onclick="openBookingModal()">
+        🌊 Book Now!
+      </button>
+    </div>
+  </div>
+
+</main>
+
+<!-- BOOKING DETAILS MODAL -->
+<div id="booking-modal" class="modal-overlay">
+  <div class="bmodal-box">
+    <button class="modal-close" onclick="closeBookingModal()">&times;</button>
+    <div class="bmodal-layout">
+
+      <!-- LEFT: BOOKING DETAILS -->
+      <div class="bmodal-section">
+        <div class="bmodal-section-title">Booking Details</div>
+        <div class="bmodal-fields">
+          <div class="bfield">
+            <label>Full Name</label>
+            <input type="text" id="b-name" placeholder="Enter your full name">
+          </div>
+          <div class="bfield">
+            <label>Email</label>
+            <input type="email" id="b-email" placeholder="your@email.com">
+          </div>
+          <div class="bfield">
+            <label>Phone Number</label>
+            <input type="tel" id="b-phone" placeholder="0912 345 6789">
+          </div>
+          <div class="bfield">
+            <label>Date of Visit</label>
+            <input type="text" id="b-date" class="calendar-input" placeholder="Select date">
+          </div>
+          <div class="bfield">
+            <label>Number of Guests</label>
+            <input type="number" id="b-guests" placeholder="e.g. 5" min="1">
+          </div>
+          <div class="bfield">
+            <label>Selected Items</label>
+            <div id="b-selected-items" class="b-items-list">No items selected yet.</div>
+          </div>
+          <div class="bfield">
+            <label>Special Requests</label>
+            <textarea id="b-notes" placeholder="Any special requests or notes..." rows="2"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: PAYMENT METHOD -->
+      <div class="bmodal-section">
+        <div class="bmodal-section-title">Payment Method</div>
+        <div class="bpayment-area">
+          <div class="btotal-row">
+            <span>Total Amount</span>
+            <strong id="b-total">₱0</strong>
+          </div>
+          <button class="bpay-btn bpay-online" onclick="submitBooking('online')">
+            💳 Pay Online
+          </button>
+          <div class="bpay-or">OR</div>
+          <button class="bpay-btn bpay-visit" onclick="submitBooking('visit')">
+            🏖️ Pay In Visit
+          </button>
+          <p class="bpay-note">Pay Online: GCash / Bank Transfer<br>Pay In Visit: Pay upon arrival at the resort</p>
+          <button class="bsubmit-btn" onclick="submitBooking('selected')">
+            Submit Booking
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- CONFIRMATION MODAL WITH QR CODE -->
+<div id="confirmation-modal" class="modal-overlay">
+  <div class="qr-modal">
+    <button class="modal-close" onclick="closeConfirmationModal()">&times;</button>
+    <div class="qr-modal-content">
+      <div class="qr-success-icon">✅</div>
+      <h2>Booking Confirmed!</h2>
+      <p id="confirmation-message">Your booking has been successfully created.</p>
+      
+      <div class="qr-code-container">
+        <div id="qr-code-display" class="qr-code-box"></div>
+        <p class="qr-instruction">Show this QR code at the entrance</p>
+      </div>
+      
+      <div class="booking-summary-box">
+        <h4>Booking Summary</h4>
+        <div id="booking-summary-details"></div>
+      </div>
+      
+      <div class="qr-actions">
+        <button class="qr-download-btn" onclick="downloadQRCode()">📥 Download QR Code</button>
+        <button class="qr-close-btn" onclick="closeConfirmationModal()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MY BOOKINGS MODAL -->
+<div id="bookings-modal" class="modal-overlay">
+  <div class="bookings-modal-box">
+    <button class="modal-close" onclick="closeBookingsModal()">&times;</button>
+    <h2>📋 My Reservations</h2>
+    <div id="bookings-list" class="bookings-list">
+      <p style="text-align: center; color: #888;">Loading your bookings...</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Jo-Nin Garden Resort</div>
+  <p class="footer-tagline">Your sunny escape in the heart of nature.</p>
+  <p class="footer-copy">© 2026 Jo-Nin Garden Resort. All rights reserved.</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script src="booking_script.js"></script>
+</body>
+</html>
