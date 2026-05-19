@@ -193,5 +193,43 @@
 <script src="pools_script.js"></script>
 </body>
 <script src="auth.js"></script>
+
+<!-- CHATBOT -->
+<div id="jo-chatbot">
+  <button id="chat-toggle" onclick="toggleChat()" aria-label="Open chat">
+    <i class="ti ti-message-chatbot"></i>
+    <span id="chat-badge" class="chat-badge hidden">1</span>
+  </button>
+  <div id="chat-window" class="chat-window hidden">
+    <div class="chat-header">
+      <div class="chat-header-info">
+        <div class="chat-avatar">J</div>
+        <div>
+          <p class="chat-name">Jo-Nin Assistant</p>
+          <p class="chat-status">Online</p>
+        </div>
+      </div>
+      <button class="chat-close" onclick="toggleChat()" aria-label="Close chat">
+        <i class="ti ti-x"></i>
+      </button>
+    </div>
+    <div id="chat-messages" class="chat-messages">
+      <div class="chat-bubble bot">
+        <p>Hi there! Welcome to Jo-Nin Garden Resort. I can help you with rates, amenities, bookings, and more. What would you like to know?</p>
+      </div>
+      <div class="chat-quick-replies" id="quick-replies">
+        <button onclick="sendQuick('What are your rates?')">Rates</button>
+        <button onclick="sendQuick('What amenities do you have?')">Amenities</button>
+        <button onclick="sendQuick('How do I book?')">Book a visit</button>
+        <button onclick="sendQuick('Where are you located?')">Location</button>
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input type="text" id="chat-input" placeholder="Ask me anything…" onkeydown="if(event.key==='Enter')sendMessage()">
+      <button class="chat-send" onclick="sendMessage()"><i class="ti ti-send"></i></button>
+    </div>
+  </div>
+</div>
+<script src="chatbot_script.js"></script>
 </body>
 </html>
